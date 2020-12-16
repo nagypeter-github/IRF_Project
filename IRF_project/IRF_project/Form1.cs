@@ -16,16 +16,18 @@ namespace IRF_project
 {
     public partial class Form1 : Form
     {
-        List<Adat> adats = new List<Adat>();
-        
+        List<Adat> Adats = new List<Adat>();
+        private static FileStream fs = new FileStream(@"c:\temp\mcb.txt", FileMode.OpenOrCreate, FileAccess.Write);
+        private static StreamWriter m_streamWriter = new StreamWriter(fs);
         public Form1()
         {
             InitializeComponent();
-           adats = GetAdat(@"C:\Temp\adat.csv");
+            Adats = GetAdats(@"C:\Temp\adat.csv");
 
 
         }
-        public List<Adat> GetAdat(string csvpath)
+
+        public List<Adat> GetAdats(string csvpath)
         {
             List<Adat> adats = new List<Adat>();
             using (StreamReader sr = new StreamReader("adat.csv", Encoding.Default))
@@ -56,7 +58,7 @@ namespace IRF_project
 
         private void button2_Click(object sender, EventArgs e)
         {
-            chart1.DataSource = adats;
+            chart1.DataSource = Adats;
             var series = chart1.Series[0];
             series.ChartType = SeriesChartType.Bar;
             series.XValueMember = "adat1";
@@ -77,14 +79,21 @@ namespace IRF_project
         {
 
         }
-
-        private static FileStream fs = new FileStream(@"c:\temp\mcb.txt", FileMode.OpenOrCreate, FileAccess.Write);
-        private static StreamWriter m_streamWriter = new StreamWriter(fs);
+        private void Form2_Load(object sender, System.EventArgs e)
+        {
+            // Write to the file using StreamWriter class    
+            m_streamWriter.BaseStream.Seek(0, SeekOrigin.End);
+            m_streamWriter.Write(" File Write Operation Starts : ");
+            m_streamWriter.WriteLine("{0} {1}",
+            DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
+            m_streamWriter.WriteLine("===================================== \n");
+            m_streamWriter.Flush();
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             m_streamWriter.WriteLine("{0} {1}",
-            DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
+    DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
             m_streamWriter.Flush();
         }
 

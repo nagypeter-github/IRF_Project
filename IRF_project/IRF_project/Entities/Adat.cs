@@ -10,5 +10,7 @@ namespace IRF_project
     {
         public int szam1 { get; set; }
         public int szam2 { get; set; }
+
+        public Adat(){}
     }
 }
