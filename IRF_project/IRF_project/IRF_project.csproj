@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Adat.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,10 +73,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="IRF_project.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
     </None>
+    <None Include="adat.csv" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Adat.datasource" />
+    <None Include="Properties\DataSources\IRF_project.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\IRF_project.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
